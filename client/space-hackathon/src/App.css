@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  height: 100vh;
+  width: 100vw;
+  ;
 }
 
 .App-logo {
@@ -14,7 +17,7 @@
 }
 
 .App-header {
-  background-color: #141515;
+  background-color: #100f0f;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -78,6 +81,25 @@ button:hover {
   scale: 1.1;
 }
 
+.header-text {
+  font-family: 'Exo 2', sans-serif;
+  font-size: smaller;
+  margin: 10px;
+}
+
+.header-text,
+.header-text:hover,
+.header-text:active,
+.header-text:visited {
+  color: white;
+}
+
+.main-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
 
 @keyframes App-logo-spin {
   from {
