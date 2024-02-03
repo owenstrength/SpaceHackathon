@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #141515;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,10 +28,62 @@
   color: #61dafb;
 }
 
+.circle {
+  width: 500px;
+  height: 500px;
+  background-color: rgb(153, 153, 153);
+  border-color: #3b3b3b;
+  border-width: 10px;
+  border-style: solid;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: circle 2s infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  background-color: #505050;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: 0.3s ease;
+
+}
+
+
+.login {
+  z-index: 1;
+}
+
+.playlist-url {
+  z-index: 2;
+}
+
+
+button:hover {
+  background-color: #3b3b3b;
+  scale: 1.1;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
