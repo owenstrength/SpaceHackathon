@@ -2,7 +2,7 @@
   text-align: center;
   height: 100vh;
   width: 100vw;
-  ;
+
 }
 
 .App-logo {
@@ -85,6 +85,13 @@ button:hover {
   font-family: 'Exo 2', sans-serif;
   font-size: smaller;
   margin: 10px;
+}
+
+.title-text {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 50px;
+  margin: 10px;
+
 }
 
 .header-text,
