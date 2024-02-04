@@ -47,9 +47,9 @@ const refreshAccessToken = async () => {
 
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
-    headers.append('Access-Control-Allow-Origin', 'https://owenstrength.github.io');
+    headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
 
-    await fetch(`https://discover-more-music-backend.onrender.com/refresh_token?refresh_token=${getLocalRefreshToken()}`, {
+    await fetch(`http://localhost:8888/refresh_token?refresh_token=${getLocalRefreshToken()}`, {
         mode: 'cors',
         method: 'GET',
         credentials: 'include',
@@ -182,7 +182,7 @@ export const getCurrentUserProfile = async () => {
         console.log("USER PROFILE", data);
         return data;
     } catch (e) {
-        console.error("USER PROFILE LINE 163", e);
+        console.error("USER PROFILE error", e);
     }
 };
 
