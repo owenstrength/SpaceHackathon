@@ -31,27 +31,9 @@
   color: #61dafb;
 }
 
-.circle {
-  width: 500px;
-  height: 500px;
-  background-color: rgb(153, 153, 153);
-  border-color: #3b3b3b;
-  border-width: 10px;
-  border-style: solid;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: circle 2s infinite;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
 .button {
-  background-color: #505050;
+  background-color: #202020;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -59,11 +41,24 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 10px 2px;
+  margin: 10px 10px;
   cursor: pointer;
   border-radius: 12px;
   transition: 0.3s ease;
+  font-family: 'Exo 2', sans-serif;
+  min-width: fit-content;
+  max-width: 40%;
+  z-index: 0;
+  margin-bottom: 30px;
 
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: -30px;
 }
 
 
@@ -85,13 +80,15 @@ button:hover {
   font-family: 'Exo 2', sans-serif;
   font-size: smaller;
   margin: 10px;
+
 }
 
 .title-text {
   font-family: 'Exo 2', sans-serif;
   font-size: 50px;
   margin: 10px;
-
+  margin-top: 50px;
+  margin-bottom: -50px;
 }
 
 .header-text,
@@ -106,7 +103,28 @@ button:hover {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
+
+
+.main-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  /* Set initial opacity to 0 */
+  /* Apply fade-in animation */
+  z-index: 1;
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+    /* Fade in to full opacity */
+  }
+}
+
 
 @keyframes App-logo-spin {
   from {

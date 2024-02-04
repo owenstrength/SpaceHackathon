@@ -48,9 +48,8 @@ const HomePlanet = (props) => {
             {...props}
             ref={meshRef}
             scale={active ? 1 : 1}
-            onClick={(event) => setActive(!active)}
         >
-            <sphereGeometry args={[1.3, 50, 50]} />
+            <sphereGeometry args={[2.3, 50, 50]} />
             <meshStandardMaterial map={texture} />
         </mesh>
     );

@@ -9,7 +9,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-starfield-animation": "^1.0.1",
     "react-three-fiber": "^6.0.13",
+    "styled-components": "^6.1.8",
     "three": "^0.161.0",
     "three.js": "^0.77.1",
     "web-vitals": "^2.1.4"
