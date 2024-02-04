@@ -9,6 +9,11 @@ const Home = () => {
 
     const handleClick = () => navigate('/playlists');
 
+    const handleButtonClick = () => {
+        // Add your onClick logic here
+        window.location.href = 'http://localhost:8888/login'; // Redirect to the specified URL
+    };
+
     return (
         <>
             <h1 className='title-text'>Playlist Planet</h1>
@@ -21,7 +26,7 @@ const Home = () => {
 
             </Canvas>
             <div className='button-container'>
-                <button className="button login">Sign in with Spotify</button>
+                <button className="button login" onClick={handleButtonClick}>Sign in with Spotify</button>
                 <button onClick={handleClick} className="button playlist-url" >Enter Spotify Username</button>
             </div >
         </>
