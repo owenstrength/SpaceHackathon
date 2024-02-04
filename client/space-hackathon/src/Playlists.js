@@ -102,7 +102,7 @@ const Playlists = () => {
                         <div className='playlist-container'>
                             {arrayDataItems && arrayDataItems.map((item, index) => {
                                 return (
-                                    <PlaylistComponent key={index} name={item.name} imageLink={item.images[0].url} href={item.external_urls.spotify} access={accessToken} />
+                                    <PlaylistComponent key={index} name={item.name} imageLink={item.images[0].url} href={item.href} access={accessToken} />
                                 )
                             })}
 
@@ -116,4 +116,4 @@ const Playlists = () => {
     );
 };
 
-export default Playlists;
+export default Playlists; 
