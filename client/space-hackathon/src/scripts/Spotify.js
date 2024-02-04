@@ -253,3 +253,14 @@ export const createUserPlaylist = async function createUserPlaylist(acousticness
 
         })
 };
+
+
+export const getUsersPlaylists = async () => {
+    try {
+        const data = await spotifyApi.getUserPlaylists();
+        console.log("USER PLAYLISTS", data);
+        return data;
+    } catch (e) {
+        console.error("USER PLAYLISTS error", e);
+    }
+}
