@@ -22,7 +22,7 @@ const Home = () => {
             </Canvas>
             <div className='button-container'>
                 <button className="button login">Sign in with Spotify</button>
-                <button onClick={handleClick} className="button playlist-url" >Enter Spotify Username (Public Playlists Only)</button>
+                <button onClick={handleClick} className="button playlist-url" >Enter Spotify Username</button>
             </div >
         </>
     );
