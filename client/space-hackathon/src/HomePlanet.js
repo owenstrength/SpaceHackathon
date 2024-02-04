@@ -7,7 +7,7 @@ const HomePlanet = (props) => {
     const [active, setActive] = useState(false);
     const [mousePos, setMousePos] = useState({});
 
-    const texture = new TextureLoader().load('map.jpg');
+    const texture = new TextureLoader().load('beast.png');
 
 
     // useEffect(() => {
