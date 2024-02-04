@@ -61,6 +61,33 @@
   background: none;
 }
 
+.username-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  margin-top: 30px;
+  background: none;
+  margin-bottom: -60px;
+
+}
+
+.thumb {
+  width: 10%;
+  margin-left: -60px;
+  padding: 14px 10px;
+  justify-content: center;
+  align-items: center;
+  min-width: none;
+}
+
+.text-in {
+  width: 100%;
+  padding: 15px 32px;
+}
+
+
 
 .login {
   z-index: 1;

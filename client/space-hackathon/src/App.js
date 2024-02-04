@@ -7,6 +7,7 @@ import PageNotFound from './components/PageNotFound';
 import Starfield from './components/Starfield';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Playlists from './Playlists';
+import Planet from './Planet';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
             <Route exact path="/" element={<><Home /></>} />
             <Route exact path="/playlists" element={<><Playlists /></>} />
             <Route exact path="/collection" element={<></>} />
-            <Route exact path="/planet" element={<></>} />
+            <Route exact path="/planet" element={<><Planet /></>} />
 
             {/* Add more routes here */}
 

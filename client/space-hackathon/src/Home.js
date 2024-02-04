@@ -2,8 +2,13 @@ import React from 'react';
 import { Canvas, } from '@react-three/fiber';
 import HomePlanet from './HomePlanet';
 import Starfield from './components/Starfield';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+    const navigate = useNavigate();
+
+    const handleClick = () => navigate('/playlists');
+
     return (
         <>
             <h1 className='title-text'>Playlist Planet</h1>
@@ -17,7 +22,7 @@ const Home = () => {
             </Canvas>
             <div className='button-container'>
                 <button className="button login">Sign in with Spotify</button>
-                <button className="button playlist-url">Use Playlist URL</button>
+                <button onClick={handleClick} className="button playlist-url" >Enter Spotify Username (Public Playlists Only)</button>
             </div >
         </>
     );
