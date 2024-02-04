@@ -1,0 +1,32 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-spacehackathon-dev-180642-authRole",
+      "UnauthRoleArn": "arn:aws:iam::925978015505:role/amplify-spacehackathon-dev-180642-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::925978015505:role/amplify-spacehackathon-dev-180642-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-spacehackathon-dev-180642-deployment",
+      "UnauthRoleName": "amplify-spacehackathon-dev-180642-unauthRole",
+      "StackName": "amplify-spacehackathon-dev-180642",
+      "StackId": "arn:aws:cloudformation:us-east-2:925978015505:stack/amplify-spacehackathon-dev-180642/478d1800-c2f1-11ee-a5e7-06b94a1bbb43",
+      "AmplifyAppId": "d8zb8g0q33baq"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d8zb8g0q33baq",
+          "type": "cicd"
+        }
+      },
+      "function": {
+        "setTokenAndStore": {
+          "deploymentBucketName": "amplify-spacehackathon-dev-180642-deployment",
+          "s3Key": "amplify-builds/setTokenAndStore-43392b5355336263714f-build.zip"
+        }
+      },
+      "api": {
+        "spaceHackathonAPI": {}
+      }
+    }
+  }
+}

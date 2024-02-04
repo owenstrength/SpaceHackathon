@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/setTokenFromAuth": {
+      "name": "/setTokenFromAuth",
+      "lambdaFunction": "setTokenAndStore",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
