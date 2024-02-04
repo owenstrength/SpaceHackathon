@@ -3,26 +3,31 @@ import { React, useEffect, useState } from 'react';
 
 import Header from './Header';
 import Home from './Home';
+import PageNotFound from './components/PageNotFound';
 import Starfield from './components/Starfield';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Playlists from './Playlists';
 
 function App() {
-
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
+        <header className="App-header" style={{ height: '100%' }}>
+          <Starfield />
+          <Header />
+          <Routes>
+            <Route exact path="/" element={<><Home /></>} />
+            <Route exact path="/playlists" element={<><Playlists /></>} />
+            <Route exact path="/collection" element={<></>} />
+            <Route exact path="/planet" element={<></>} />
 
-      <header className="App-header" style={{ height: '100%', }}>
-        <Starfield />
-        <Header />
-        <Home />
+            {/* Add more routes here */}
 
-
-
-        {/*}
-          <button className="button login">Sign in with Spotify</button>
-          <button className="button playlist-url">Use Playlist URL</button>
-  */}
-      </header>
-    </div>
+            <Route path="*" element={<><PageNotFound /></>} />
+          </Routes>
+        </header>
+      </div>
+    </Router>
   );
 }
 
