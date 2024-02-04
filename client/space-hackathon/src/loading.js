@@ -49,8 +49,15 @@ const Loading = () => {
                 <h1 className='title-text' style={{ display: display }}>Push to Pipeline</h1>
                 <br></br>
                 <br></br>
-                <button className="button" onClick={onButtonClick} style={{ display: display }}>Send</button>
-                <button className="button" onClick={onButtonClick2} style={{ display: display }}>Go</button>
+                <button className="button" onClick={onButtonClick} style={{ display: display }}>Create New</button>
+                <button className="button" onClick={onButtonClick2} style={{ display: display }}>Access Most Recent
+
+                </button >
+                <br></br>
+                <br></br>
+                <div >
+                    <img src='temp.png' width={'200px'} style={{ display: display }}></img>
+                </div>
             </>
         );
     } else {
