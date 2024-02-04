@@ -3,11 +3,15 @@ import { Canvas, } from '@react-three/fiber';
 import HomePlanet from './HomePlanet';
 import Starfield from './components/Starfield';
 import { useNavigate } from 'react-router-dom';
+import { logout } from './scripts/Spotify';
 
 const Home = () => {
     const navigate = useNavigate();
 
-    const handleClick = () => navigate('/playlists');
+    const handleClick = () => {
+        logout();
+        navigate('/playlists');
+    }
 
     const handleButtonClick = () => {
         // Add your onClick logic here

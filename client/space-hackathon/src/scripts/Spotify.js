@@ -1,6 +1,9 @@
 import axios from 'axios'
+import { CLIENT_ID, CLIENT_SECRET } from './config.js';
 const SpotifyWebApi = require('spotify-web-api-node');
 const spotifyApi = new SpotifyWebApi();
+
+
 
 
 // Map for localStorage keys
@@ -42,49 +45,7 @@ export const getHashParams = () => {
     return hashParams;
 };
 
-const refreshAccessToken = async () => {
-    let headers = new Headers();
 
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-    headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
-
-    await fetch(`http://localhost:8888/refresh_token?refresh_token=${getLocalRefreshToken()}`, {
-        mode: 'cors',
-        method: 'GET',
-        credentials: 'include',
-        headers: headers
-    }).then(response => {
-        console.log(response)
-        return response.text();  // Read the response as a text string
-    }).then(data => {
-        console.log(data);  // Log the response data
-        const { access_token } = JSON.parse(data);
-        console.log(access_token)  // Parse the response data as JSON
-        setLocalAccessToken(access_token);
-        console.log("reloading")
-        window.location.reload();
-        spotifyApi.setAccessToken(access_token);
-        window.localStorage.setItem(LOCALSTORAGE_KEYS.timestamp, Date.now());
-
-
-        const refresh_token = getLocalRefreshToken();
-        const expires_in = getLocalAccessToken();
-
-        const queryParams = new URLSearchParams({
-            access_token,
-            refresh_token,
-            expires_in,
-        }).toString();
-
-        // redirect to homepage
-        window.location.replace(`${window.location.origin}/?${queryParams}`)
-        window.location.reload();
-        return;
-    }).catch(error => {
-        console.error(error);
-    });
-};
 
 // Access Token
 const getAccessToken = () => {
@@ -99,7 +60,7 @@ const getAccessToken = () => {
 
     if (!access_token && !refresh_token) {
         console.log("NO ACCESS TOKEN")
-        refreshAccessToken();
+
     }
 
 
@@ -114,7 +75,7 @@ const getAccessToken = () => {
     if (LOCALSTORAGE_VALUES.accessToken && LOCALSTORAGE_VALUES.accessToken !== 'undefined') {
         spotifyApi.setAccessToken(LOCALSTORAGE_VALUES.accessToken);
         spotifyApi.setRefreshToken(LOCALSTORAGE_VALUES.refreshToken);
-        refreshAccessToken();
+
         return LOCALSTORAGE_VALUES.accessToken;
     } else if (access_token) {
         setLocalAccessToken(access_token);
@@ -159,9 +120,6 @@ export const logout = () => {
     }
     // Navigate to homepage
 
-    window.history.pushState({}, document.title, "/");
-    window.location = window.location.host;
-    window.location.reload();
 };
 
 export const clearMemory = () => {
@@ -173,6 +131,11 @@ export const clearMemory = () => {
 
 // Allows access to spotify api
 export const accessToken = getAccessToken();
+
+export const setAccessToken = (accessToken) => {
+    spotifyApi.setAccessToken(accessToken);
+    return accessToken;
+}
 
 spotifyApi.setAccessToken(accessToken)
 // Get info about user
@@ -186,81 +149,48 @@ export const getCurrentUserProfile = async () => {
     }
 };
 
-// Get users top 2 songs
-var songs = async function getCurrentUserTopSongs() {
-    let songList = [];
 
-    await spotifyApi.getMyTopTracks({ limit: 2, time_range: 'short_term' })
-        .then(function (data) {
-            var topSongs = data.body.items;
-            songList.push(topSongs[0].id)
-            songList.push(topSongs[1].id)
-            //console.log('songs', songList)
-        })
-    console.log('songs', songList)
-    return songList;
-}();
 
-// Get users top 3 artists
-var artists = async function getCurrentUserTopArtists() {
-    let artistList = [];
-    await spotifyApi.getMyTopArtists({ limit: 3, time_range: 'medium_term' })
-        .then(function (data) {
-            var topArtist = data.body.items;
-            artistList.push(topArtist[0].id)
-            artistList.push(topArtist[1].id)
-            artistList.push(topArtist[2].id)
-            //console.log('artist ', artistList)
-        })
-    console.log('artist ', artistList)
-    return artistList;
-}();
+export const getUsersPlaylists = async (accessTokenIn) => {
+    try {
+        const response1 = await axios.get('https://api.spotify.com/v1/me', {
+            headers: {
+                'Authorization': `Bearer ${accessTokenIn}`
+            }
+        });
+        const data1 = response1.data;
+        const username = data1.display_name;
 
-// Use spotify api to get reccomendations based on songs and artists
-async function getCurrentUserRecommendations(acousticness, danceability, instrumentalness, energy, popularity) {
-    console.log(songs)
-    console.log(artists.length)
-    let tracks_list = [];
-    let tracks;
-    await spotifyApi.getRecommendations({
-        seed_artists: await artists, seed_tracks: await songs,
-        target_acousticness: (acousticness / 100), target_danceability: (danceability / 100),
-        target_instrumentalness: (instrumentalness / 100), target_energy: (energy / 100), target_popularity: popularity, limit: 30
-    })
-        .then(function (data) {
-            console.log(data)
-            tracks = data.body.tracks
-        }, function (err) {
-            console.log('Something went wrong getting new recommendations!', err);
-        })
-    tracks.forEach(element => tracks_list.push(element.uri));
-    return tracks_list;
+
+        const response = await axios.get('https://api.spotify.com/v1/me/playlists/?limit=50', {
+            headers: {
+                'Authorization': `Bearer ${accessTokenIn}`
+            }
+        });
+        const data = response.data;
+
+        // get the genre of each playlist
+
+
+        console.log("USER PLAYLISTS", data);
+        return [username, data];
+    } catch (error) {
+        console.error("USER PLAYLISTS error", error);
+    }
 }
 
-// Create a new playlist and add recomended tracks and passing in params from frontend
-export const createUserPlaylist = async function createUserPlaylist(acousticness, danceability, instrumentalness, energy, popularity) {
-    let tracks = await getCurrentUserRecommendations(acousticness, danceability, instrumentalness, energy, popularity)
-    console.log('tracks: ', tracks)
-    spotifyApi.createPlaylist("Discover More Music", { 'public': false })
-        .then(async function (data) {
-            await spotifyApi.addTracksToPlaylist(data.body.id, tracks)
-            // log link to playlist
-            console.log(data.body.external_urls.spotify);
-            var newWindow = window.open();
-            newWindow.location = data.body.external_urls.spotify;
-            //window.open(data.body.external_urls.spotify, "_blank")
-
-
-        })
-};
-
-
-export const getUsersPlaylists = async () => {
+export const getUsersPlaylists_USERNAME = async (username) => {
     try {
-        const data = await spotifyApi.getUserPlaylists();
+        const response = await axios.get('https://api.spotify.com/v1/users/' + username + '/playlists/?limit=50', {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
+        const data = response.data;
         console.log("USER PLAYLISTS", data);
-        return data;
-    } catch (e) {
-        console.error("USER PLAYLISTS error", e);
+        return [username, data];
+    } catch (error) {
+        console.error("USER PLAYLISTS error", error);
     }
 }

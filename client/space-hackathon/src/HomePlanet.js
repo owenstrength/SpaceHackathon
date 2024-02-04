@@ -9,6 +9,7 @@ const HomePlanet = (props) => {
 
     const texture = new TextureLoader().load('map.jpg');
 
+
     // useEffect(() => {
     //     const handleMouseDown = () => setActive(true);
     //     const handleMouseUp = () => setActive(false);
