@@ -21,7 +21,7 @@ const Planet = () => {
         const fetchData = async () => {
             await sendPlaylistToServer(href, accessTokenIn).then(response => { setData(response) });
         }
-        if (data === null) {
+        if (data === null || data === undefined || data === '') {
             fetchData();
 
         }
