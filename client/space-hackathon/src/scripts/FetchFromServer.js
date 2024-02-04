@@ -2,9 +2,9 @@ import axios from 'axios'
 
 export const sendPlaylistToServer = async (href, access) => {
     try {
-        const response = await axios.post('http://localhost:5000/playlist', {
-            playlist: href,
-            access_token: access
+        const response = await axios.post('http://localhost:5000/get_playlist_image', data = {
+            'playlist': href,
+            'access_token': access
         });
         const data = response.data;
         console.log("Playlist sent to server", data);
