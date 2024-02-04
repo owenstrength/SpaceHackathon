@@ -19,7 +19,8 @@ const Planet = () => {
         const accessTokenIn = params.get('access');
         const href = params.get('href');
         const fetchData = async () => {
-            await sendPlaylistToServer(href, accessTokenIn).then(response => { setData(response) });
+            var res = await sendPlaylistToServer(href, accessTokenIn).then(response => { setData(response) });
+            setData(res.data);
         }
         if (data === null || data === undefined || data === '') {
             fetchData();
