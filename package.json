@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js && cd client/space-hackathon && npm start && cd .. && cd ImageGen/flask-react-app && flask run"
   },
   "author": "Owen Strength & Jacob Simmons",
   "license": "ISC",

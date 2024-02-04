@@ -11,7 +11,7 @@ const PlaylistComponent = ({ name, imageLink, href, access }) => {
 
     const onClickHandle = () => {
         console.log('clicked');
-        navigate('/planet?playlist=' + href + '&access=' + access);
+        navigate('/loading?playlist=' + href + '&access=' + access);
     }
 
 

@@ -7,8 +7,8 @@ var SpotifyWebApi = require('spotify-web-api-node');
 const { json } = require('express');
 const PORT = process.env.PORT || 8888;
 
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const CLIENT_ID = process.env.CLIENT_ID2;
+const CLIENT_SECRET = process.env.CLIENT_SECRET2;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 
 

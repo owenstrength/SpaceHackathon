@@ -3,14 +3,12 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { MeshStandardMaterial, TextureLoader } from 'three';
 
 const PlanetComp = (props) => {
-
-    const { imageLink } = props;
-
     const meshRef = useRef();
     const [active, setActive] = useState(false);
     const [mousePos, setMousePos] = useState({});
 
-    const texture = new TextureLoader().load(imageLink);
+    const texture = new TextureLoader().load('temp.png');
+
 
     // useEffect(() => {
     //     const handleMouseDown = () => setActive(true);
@@ -35,6 +33,7 @@ const PlanetComp = (props) => {
             // if active move let mouse move planet
             var targetX = mousePos.x * 0.001;
             var targetY = mousePos.y * 0.001;
+
 
             meshRef.current.rotation.y += 0.5 * (targetX - meshRef.current.rotation.y);
             meshRef.current.rotation.z += 0.5 * (targetY - meshRef.current.rotation.z);
