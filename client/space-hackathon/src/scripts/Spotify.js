@@ -159,7 +159,7 @@ export const logout = () => {
     }
     // Navigate to homepage
 
-    window.history.pushState({}, document.title, "/Discover-More-Music");
+    window.history.pushState({}, document.title, "/");
     window.location = window.location.host;
     window.location.reload();
 };
